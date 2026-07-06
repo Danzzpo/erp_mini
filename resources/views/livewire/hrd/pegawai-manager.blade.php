@@ -75,6 +75,7 @@ new class extends Component {
 
     public function with(): array {
         $departemens = [];
+        // Logika pencarian yang akan berjalan saat inputan diketik
         if (strlen($this->nama_departemen_input) > 0 && empty($this->departemen_id)) {
             $departemens = Departemen::where('nama_departemen', 'like', '%' . $this->nama_departemen_input . '%')->get();
         }
@@ -98,7 +99,11 @@ new class extends Component {
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white fw-bold">
-                    {{ $isEdit ? '✏️ Edit Pegawai' : '👤 Tambah Pegawai' }}
+                    @if($isEdit)
+                        <i class="bi bi-pencil-square"></i> Edit Pegawai
+                    @else
+                        <i class="bi bi-person-plus-fill"></i> Tambah Pegawai
+                    @endif
                 </div>
                 <div class="card-body bg-light">
                     <form wire:submit.prevent="simpan">
@@ -110,14 +115,17 @@ new class extends Component {
 
                         <div class="mb-3 position-relative">
                             <label class="form-label fw-semibold text-secondary">Departemen</label>
-                            <input type="text" wire:model="nama_departemen_input" class="form-control border-primary" placeholder="Ketik divisi..." autocomplete="off">
+                            <input type="text" wire:model.live.debounce.300ms="nama_departemen_input" class="form-control border-primary" placeholder="Ketik nama divisi (misal: IT)..." autocomplete="off">
+
                             @if(strlen($nama_departemen_input) > 0 && empty($departemen_id))
                                 <ul class="list-group position-absolute w-100 shadow-sm" style="z-index: 1000; max-height: 150px; overflow-y: auto;">
-                                    @foreach($departemens as $dept)
+                                    @forelse($departemens as $dept)
                                         <li wire:click="pilihDepartemen({{ $dept->id }}, '{{ $dept->nama_departemen }}')" class="list-group-item list-group-item-action text-primary fw-semibold" style="cursor: pointer;">
                                             <i class="bi bi-search"></i> {{ $dept->nama_departemen }}
                                         </li>
-                                    @endforeach
+                                    @empty
+                                        <li class="list-group-item text-danger small">Departemen tidak ditemukan</li>
+                                    @endforelse
                                 </ul>
                             @endif
                             @error('departemen_id') <span class="text-danger small mt-1 d-block">Wajib memilih dari hasil pencarian!</span> @enderror
@@ -160,7 +168,7 @@ new class extends Component {
                                 @forelse($pegawais as $pegawai)
                                     <tr>
                                         <td class="align-middle fw-bold">{{ $pegawai->nama_pegawai }}</td>
-                                        <td class="align-middle text-primary fw-semibold">{{ $pegawai->departemen->nama_departemen ?? 'N/A' }}</td>
+                                        <td class="align-middle text-primary fw-semibold">{{ $pegawai->departemen->nama_departemen ?? 'Tidak Ada' }}</td>
                                         <td class="align-middle fw-semibold">{{ $pegawai->jabatan }}</td>
                                         <td class="text-center align-middle">
                                             <button wire:click="edit({{ $pegawai->id }})" class="btn btn-warning btn-sm text-dark shadow-sm"><i class="bi bi-pencil"></i></button>

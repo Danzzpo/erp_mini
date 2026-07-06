@@ -11,15 +11,14 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/kategori">Kategori Gudang</a>
-                    </li>
                 </ul>
                 <div class="d-flex align-items-center">
                     <span class="navbar-text text-light me-3 fw-semibold">
-                        Halo, {{ auth()->user()->name }}
+                        <i class="bi bi-person-circle"></i> Halo, {{ auth()->user()->name }}
                     </span>
-                    <button wire:click="logout" class="btn btn-danger btn-sm fw-bold">Logout</button>
+                    <button wire:click="logout" class="btn btn-danger btn-sm fw-bold">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
                 </div>
             </div>
         </div>
@@ -35,28 +34,32 @@
         </div>
 
         <div class="row g-4">
-            <!-- Modul HRD -->
+            <!-- Modul HRD (Sudah 1 Pintu) -->
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 h-100">
                     <div class="card-body text-center mt-3">
-                        <h4 class="card-title fw-bold text-primary">Modul HRD</h4>
-                        <p class="card-text text-muted mb-4">Kelola data departemen, pegawai, dan catatan absensi.</p>
-                        <a href="/departemen" class="btn btn-primary w-100 fw-bold mb-2">Data Departemen</a>
-                        <button class="btn btn-outline-primary w-100 mb-2" disabled>Data Pegawai</button>
-                        <button class="btn btn-outline-primary w-100" disabled>Data Absensi</button>
+                        <h4 class="card-title fw-bold text-primary"><i class="bi bi-person-badge"></i> Modul HRD</h4>
+                        <p class="card-text text-muted mb-4">Kelola data departemen, pegawai, dan catatan absensi dalam
+                            satu tempat.</p>
+                        <!-- Mengarah ke rute HrdPage -->
+                        <a href="/hrd" class="btn btn-primary w-100 fw-bold py-2">
+                            Buka Modul HRD <i class="bi bi-arrow-right-circle ms-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Modul Gudang -->
+            <!-- Modul Gudang (Sudah 1 Pintu) -->
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 h-100">
                     <div class="card-body text-center mt-3">
-                        <h4 class="card-title fw-bold text-success">Modul Gudang</h4>
-                        <p class="card-text text-muted mb-4">Kelola master barang, kategori, dan data suplier.</p>
-                        <a href="/kategori" class="btn btn-outline-success w-100 fw-bold">Buka Kategori</a>
-                        <a href="/suplier" class="btn btn-outline-success w-100 fw-bold">Buka Suplier</a>
-                        <a href="/barang" class="btn btn-outline-success w-100 fw-bold">Data Barang (Inti)</a>
+                        <h4 class="card-title fw-bold text-success"><i class="bi bi-boxes"></i> Modul Gudang</h4>
+                        <p class="card-text text-muted mb-4">Kelola master barang, kategori, dan data suplier dalam satu
+                            tempat.</p>
+                        <!-- Mengarah ke rute GudangPage (Persiapan) -->
+                        <a href="/gudang" class="btn btn-success w-100 fw-bold py-2">
+                            Buka Modul Gudang <i class="bi bi-arrow-right-circle ms-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -65,9 +68,12 @@
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 h-100">
                     <div class="card-body text-center mt-3">
-                        <h4 class="card-title fw-bold text-warning">Modul Penjualan</h4>
+                        <h4 class="card-title fw-bold text-warning"><i class="bi bi-cart-check"></i> Modul Penjualan
+                        </h4>
                         <p class="card-text text-muted mb-4">Kelola data pelanggan dan transaksi detail penjualan.</p>
-                        <button class="btn btn-outline-warning w-100" disabled>Belum Tersedia</button>
+                        <a href="/penjualan" class="btn btn-warning w-100 fw-bold py-2 text-dark">
+                            Buka Modul Penjualan <i class="bi bi-arrow-right-circle ms-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
