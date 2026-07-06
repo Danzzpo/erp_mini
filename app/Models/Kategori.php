@@ -3,8 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kategori extends Model
 {
-    //
+    // Ini yang membuat data bisa disimpan
+    protected $fillable = ['nama_kategori'];
+
+    public function barang(): HasMany
+    {
+        return $this->hasMany(Barang::class);
+    }
 }
