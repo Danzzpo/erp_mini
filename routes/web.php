@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
+// Mengarahkan akses root langsung ke halaman HRD
 Route::get('/', function () {
     return redirect('/hrd');
 });
 
-// Panggil persis dengan emoji petirnya
-Volt::route('/hrd', 'hrd-page')->name('hrd');
+// Menggunakan Route::livewire seperti teman-temanmu (Tanpa petir!)
+Route::livewire('/hrd', 'hrd-page')->name('hrd');

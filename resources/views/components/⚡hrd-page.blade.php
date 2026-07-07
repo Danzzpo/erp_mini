@@ -1,6 +1,6 @@
 <?php
 
-use Livewire\Volt\Component;
+use Livewire\Component; // Menggunakan class bawaan Livewire murni
 
 new class extends Component {
     public $subPage = 'departemen';
@@ -29,11 +29,12 @@ new class extends Component {
 
     <div class="mt-2">
         @if($subPage == 'departemen')
-            <livewire:hrd.departemen-manager />
+            {{-- Wajib menggunakan petir sesuai nama file fisiknya --}}
+            <livewire:hrd.⚡departemen-manager />
         @elseif($subPage == 'pegawai')
-            <livewire:hrd.pegawai-manager />
+            <livewire:hrd.⚡pegawai-manager />
         @elseif($subPage == 'absensi')
-            <livewire:hrd.absensi-manager />
+            <livewire:hrd.⚡absensi-manager />
         @endif
     </div>
 </div>
