@@ -15,7 +15,7 @@ Route::middleware('auth')->group(function () {
     // Rute Modul HRD (Masuk ke halaman pembungkus tab)
     Route::get('/hrd', HrdPage::class)->name('hrd');
 
-    Volt::route('/gudang', 'gudang-page')->name('gudang');
-    
-    Volt::route('/penjualan', 'penjualan-page')->name('penjualan');
+    //Volt::route('/gudang', 'gudang-page')->name('gudang');
+
+    //Volt::route('/penjualan', 'penjualan-page')->name('penjualan');
 });
